@@ -1,1 +1,1 @@
-Deployedlink https://riyanreactquizapplication.netlify.app/
+Deployedlink  https://riyanreactquizapp.netlify.app/
