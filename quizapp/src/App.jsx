@@ -7,6 +7,8 @@ function App() {
   const [style, setStyle] = useState(false);
   const [score, setScore] = useState(0);
   const [result, setResult] = useState(false);
+  const [selectedOptionIndex, setSelectedOptionIndex] = useState(null);
+
 
   let apidata = [
     {
@@ -54,19 +56,21 @@ function App() {
     setStyle(true);
 
     let checkanswer = apidata[count].options[index];
+    setSelectedOptionIndex(index)
     if (checkanswer === apidata[count].carrectanswer) {
       console.log("Correct answer!");
       setScore(score + 1);
+    
     }
 
-    handleNextClick();
+    // handleNextClick();
   };
 
   const handleNextClick = () => {
     setTimer(15);
     setCount(prevCount => prevCount + 1);
     setStyle(false);
-
+    setSelectedOptionIndex(null)
     if (count === apidata.length - 1) {
       setResult(true);
     }
@@ -84,8 +88,8 @@ function App() {
             <h1 className='p-11 text-center bg-slate-800 rounded-full text-white'>{timer}</h1>
           </div>
 
-          {/* <div className='box'>
-            <div className='text-center'>{apidata[count]?.question}</div>
+          <div className='box'>
+            <div className='text-center text-2xl'>{apidata[count]?.question}</div>
 
             <div className='flex justify-around mt-3 w-full'>
               {apidata[count]?.options.map((option, index) => (
@@ -93,7 +97,9 @@ function App() {
                   key={index}
                   style={{
                     cursor: style ? 'not-allowed' : 'pointer',
-                    opacity: style ? 0.6 : 1
+                    opacity: style ? 0.6 : 1,
+                    backgroundColor: selectedOptionIndex === index ? 'green' : 'rgb(100, 116, 139)' // Set background color conditionally
+
                   }}
                   disabled={style}
                   onClick={() => handleOptionClick(index)}
@@ -105,22 +111,24 @@ function App() {
             </div>
 
             <div className='flex justify-center mt-3'>
-              <button onClick={handleNextClick} className='text-center bg-blue-800 p-2 rounded-lg'>Next</button>
+              <button onClick={handleNextClick} className='text-center bg-slate-700 text-white p-2 rounded-lg'>Next</button>
             </div>
-          </div> */}
+          </div>
 
 
-<div className='box'>
-  <div className='text-center bg-slate-800 text-white p-2 rounded-lg'>{apidata[count]?.question}</div>
+{/* <div className='box'>
+  <div className='text-center bg-slate-800 text-white p-2 rounded-lg'>{apidata[count]?.question}</div> */}
 
   {/* Upar ke buttons ke div */}
-  <div className='flex justify-around mt-3'>
+  {/* <div className='flex justify-around mt-3'>
     {apidata[count]?.options.slice(0, 2).map((option, index) => (
       <button
         key={index}
         style={{
           cursor: style ? 'not-allowed' : 'pointer',
-          opacity: style ? 0.6 : 1
+          opacity: style ? 0.6 : 1,
+          backgroundColor: index === selectedOptionIndex ? 'green' : 'black' // Set background color conditionally
+
         }}
         disabled={style}
         onClick={() => handleOptionClick(index)}
@@ -129,19 +137,20 @@ function App() {
         {option}
       </button>
     ))}
-  </div>
+  </div> */}
 
   {/* Neeche ke buttons ke div */}
-  <div className='flex justify-around mt-3'>
+  {/* <div className='flex justify-around mt-3'>
     {apidata[count]?.options.slice(2).map((option, index) => (
       <button
         key={index + 2} // Key should be unique, so adding 2 to differentiate from the first set of buttons
         style={{
           cursor: style ? 'not-allowed' : 'pointer',
-          opacity: style ? 0.6 : 1
+          opacity: style ? 0.6 : 1,
+          backgroundColor: index === selectedOptionIndex ? 'green' : 'black'
         }}
         disabled={style}
-        onClick={() => handleOptionClick(index + 2)} // Add 2 to index to match the correct option in the apidata array
+        onClick={() => handleOptionClick(index+2)} // Add 2 to index to match the correct option in the apidata array
         className='bg-slate-600 w-full text-center p-2 rounded-md mx-3'
       >
         {option}
@@ -152,7 +161,7 @@ function App() {
   <div className='flex justify-center mt-3'>
     <button onClick={handleNextClick} className='text-center text-white bg-slate-800 p-2 rounded-lg'>Next</button>
   </div>
-</div>
+</div> */}
 
 
         </div>
