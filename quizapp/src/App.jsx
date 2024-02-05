@@ -81,17 +81,20 @@ function App() {
   // console.log("result", result);
 
   return (
-    <div className='w-full h-screen flex justify-center items-center bg-slate-800'>
+    <div className='w-full h-screen flex justify-center items-center bg-slate-800 flex-col'>
       {!result ? (
-        <div className=' border-4 bg-slate-400 shadow-slate-300 shadow-lg p-4  w-4/5 h-3/4 flex justify-around flex-col'>
+        <div><h1 className=' text-white text-3xl text-center'>Quiz Application</h1>
+
+
+        <div className=' border-4 bg-slate-400 shadow-slate-300 shadow-lg p-8 w-11/12 h-11/12 flex justify-around flex-col'>
           <div className='flex justify-center mt-3'>
-            <h1 className='p-11 text-center bg-slate-800 rounded-full text-white'>{timer}</h1>
+            <h1 className='p-11 text-center bg-slate-800 rounded-full text-white text-2xl'>{timer}</h1>
           </div>
 
           <div className='box'>
             <div className='text-center text-2xl'>{apidata[count]?.question}</div>
 
-            <div className='flex justify-around mt-3 w-full'>
+            <div className='flex justify-around mt-3 w-full flex-wrap'>
               {apidata[count]?.options.map((option, index) => (
                 <button
                   key={index}
@@ -103,7 +106,7 @@ function App() {
                   }}
                   disabled={style}
                   onClick={() => handleOptionClick(index)}
-                  className='bg-slate-500 w-full text-center p-2 rounded-md mx-3'
+                  className='bg-slate-500 text-center rounded-md mx-1 p-1 w-full mb-2'
                 >
                   {option}
                 </button>
@@ -163,7 +166,7 @@ function App() {
   </div>
 </div> */}
 
-
+</div>
         </div>
       ) : (
         <div className='bg-slate-700 p-14 rounded-lg text-white shadow-lg shadow-slate-300 border-4'>Score: {score}</div>
